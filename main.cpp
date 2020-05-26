@@ -5,7 +5,7 @@ using namespace std;
 int main()
 {
     int qteCompras, qteAtrasos;
-    int scoreCompras;
+    int scoreCompras, scoreInadimplencia, scoreFormaPagto;
     double ticketMedio, volumeCompras;
     string pagamento;
 
@@ -38,7 +38,28 @@ int main()
         scoreCompras = 60;
     }
 
+    scoreInadimplencia = 0;
+    if (qteAtrasos > 1 || qteCompras == 0) {
+        scoreInadimplencia = 0;
+    }
+    else if (qteCompras > 0 && qteAtrasos == 1) {
+        scoreInadimplencia = 15;
+    }
+    else if (qteCompras > 0 && qteAtrasos == 0) {
+        scoreInadimplencia = 30;
+    }
+
+    scoreFormaPagto = 0;
+    if (qteCompras > 0 && pagamento == "D") {
+        scoreFormaPagto = 5;
+    }
+    else if (qteCompras > 0) {
+        scoreFormaPagto = 10;
+    }
+
     cout << endl << "Score de volume de compras = " << scoreCompras << " pontos" << endl;
+    cout << endl << "Score de inadimplência = " << scoreInadimplencia << " pontos" << endl;
+    cout << "Score de forma de pagamento = " << scoreFormaPagto << " pontos" << endl;
 
     return 0;
 }
